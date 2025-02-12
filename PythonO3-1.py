@@ -6,6 +6,7 @@ def RapporteraBetyg():
     while Resultat != ' ':
         rapport = tuple(Resultat.split(':'))
         print(rapport)
+        
         Resultat = input(str("Mata in en kurs och ett betyg på formen kurskod:betyg: "))
 
     print("Klar med inmatningar")
