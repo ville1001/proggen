@@ -1,15 +1,30 @@
 print('=== Välkommen! Mata in ett av menyvalen. ===')
 
+def IsGradeCorrect(Grade):
+    if ':' not in Grade:
+        return(False)
+    
+    if 3<=int(Grade[-1])<=5:
+        return(True)
+    else:
+        return(False)
+    
+
+
+
 def RapporteraBetyg():
     Resultat = input(str("Mata in en kurs och ett betyg på formen kurskod:betyg: "))
+    while Resultat != ' ' and Resultat != "":
+        if IsGradeCorrect(Resultat):
+            print("pling")
 
-    while Resultat != ' ':
-        rapport = tuple(Resultat.split(':'))
-        print(rapport)
-        
+        else:
+            print("Felaktig inmatning, försök igen!")
+
         Resultat = input(str("Mata in en kurs och ett betyg på formen kurskod:betyg: "))
-
+    
     print("Klar med inmatningar")
+
 
 
 while True:
