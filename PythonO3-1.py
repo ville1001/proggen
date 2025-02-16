@@ -1,39 +1,52 @@
 print('=== Välkommen! Mata in ett av menyvalen. ===')
 
+def DateAlreadyReported(Grades, Date):
+    year, month, day = map(int, Date.split('-'))
+
+    for course in Grades:
+        if len(course) == 3 and course[2] == Date:
+            print("Ojdå, redan rapporterat här! ")
+            return True
+        return False
+        
+        
+
 
 def IsDateCorrect(Date):
     try:
         year, month, day = map(int, Date.split('-'))  # Omvandlar till int
 
         if year < 0 or year > 3000:
-            print("Felaktigt år")
+            #print("Felaktigt år")
             return False #kontrolerar året
         elif month < 1 or month > 12:
-            print("Felaktigt månad")
+            #print("Felaktigt månad")
             return False #kontrollerar månaden
         elif day < 1 or day > 31:
-            print("Felaktigt dag")
+            #print("Felaktigt dag")
             return False #Kontrollerar dagen
         else:
             return(True)
     except:
-        print("Value error exception")
         return(False)
-
 
 
 def lagra(Grades):
     Date = input("Mata in ett rapporteringdatum: ")
 
-    if(IsDateCorrect(Date)):
-        for i in range(len(Grades)):
-            Grades[i] = Grades[i] + (Date,)
-
+    if(IsDateCorrect(Date)):        
+        if(DateAlreadyReported)(Grades, Date):
+            print("uppatget")
+        else:
+           for i in range(len(Grades)):
+                Grades[i] = Grades[i] + (Date,)
+        print("Rapporterade in följande: ")
+        print(Grades)
+        return(Grades)
     else:
         print("ojdå fel inmatning, försök igen")
         lagra(Grades)
 
-    print(Grades)
 
 def IsGradeCorrect(Grade):
     if ':' not in Grade:
@@ -62,7 +75,8 @@ def RapporteraBetyg():
 
 
 while True:
-    
+    StoredGrades = []
+
     print('')
     print("1: Mata in kurser och  betyg")
     print("2: Gör en rapportering")
@@ -74,7 +88,7 @@ while True:
         Resultat = RapporteraBetyg()
         
     elif(choice == 2):
-        lagra(Resultat)
+        StoredGrades = lagra(Resultat)
         
     elif(choice == 0):
         print("Programmet avslutas")
